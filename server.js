@@ -39,6 +39,12 @@ app.get("/usuarios:/id", (req, res) => {
 
 });
 
+//Criar um usuário
+
+app.post("/usuarios", (req, res) => {
+    res.send()
+});
+
 
 
 app.listen(port, () => {
