@@ -26,7 +26,7 @@ app.get("/usuarios", (req, res) => {
 });
 
 //Buscar um usuário -> get by id
-app.get("/usuarios:/id", (req, res) => {
+app.get("/usuarios/:id", (req, res) => {
     const id = parseInt(req.params.id)
 
     const users = usuarios.find(usuario => usuario.id == id);
@@ -40,11 +40,46 @@ app.get("/usuarios:/id", (req, res) => {
 });
 
 //Criar um usuário
-
 app.post("/usuarios", (req, res) => {
-    res.send()
+    //body - corpo da requisição
+    const novoUsuario = req.body
+    novoUsuario.id = usuarios.length + 1
+
+    usuarios.push(novoUsuario)
+
+    res.send(novoUsuario)
 });
 
+
+//Atualizar usuário
+app.put("/usuarios", (req, res) => {
+    const id = parseInt(req.params.id);
+    const novoUsuario = req.body;
+    novoUsuario.id = id;
+    const index = usuarios.findIndex(usuario => usuario.id == id);
+
+
+    if (index != null) {
+        usuarios[index] = novoUsuario;
+        res.status(204).send(novoUsuario)
+    } else {
+        res.status(404).send("Usuário não encontrado.")
+    }
+
+});
+
+//Deletar um usuário
+app.delete("/usuarios/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = usuarios.findIndex(usuario => usuario.id == id);
+
+    if (index != null) {
+        usuarios.splice(index, 1);
+        res.status(204).send("Usuario com id:", + id + "removido com sucesso.")
+    } else {
+        res.status(404).send("Usuário não encontrado.")
+    }
+});
 
 
 app.listen(port, () => {
