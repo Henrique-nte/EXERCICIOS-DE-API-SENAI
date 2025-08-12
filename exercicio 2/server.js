@@ -22,6 +22,10 @@ const produtos = [
 
 app.get("/produtos/em-estoque", (req, resp) => {
 
+    //Com Filter
+    //const produtosEmEstoque = produtos.filter(produto => produto.emEstoque);
+    //resp.send(produtosEmEstoque);
+
     const produtos_EmEstoque = []
 
     for(let i = 0; i < produtos.length;i++){
@@ -30,6 +34,7 @@ app.get("/produtos/em-estoque", (req, resp) => {
         }
     }
 
-
+    resp.send(produtos_EmEstoque);
 
 });
+
