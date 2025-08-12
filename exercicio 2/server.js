@@ -20,9 +20,16 @@ const produtos = [
 //que retorne apenas os produtos onde emEstoque for true.
 
 
-app.get("/produtos/emEstoque", (req, resp) => {
-    
-    resp.send(produtos);
+app.get("/produtos/em-estoque", (req, resp) => {
+
+    const produtos_EmEstoque = []
+
+    for(let i = 0; i < produtos.length;i++){
+        if (produtos[i].emEstoque){
+            produtos_EmEstoque.push(produtos[i]);
+        }
+    }
+
 
 
 });
