@@ -62,15 +62,31 @@ app.get("/produtos/pesquisar", (req, resp) =>{
 
 app.patch("/produtos/:id", (req, resp) =>{
 
-    const id = req.params.id;
-    let novoPreco = req.body;
+    const id = parseInt(req.params.id);
+    const novoPreco = req.body.preco;
 
-    for (let i = 0;i < produtos.length;i++){
-        if (produtos[i].id == id){
-            produtos[i].preco = novoPreco;
-            resp.send("Preço atualizado com sucesso" );
-            break;
-        }
+    if(!novoPreco){
+        resp.status(400).send("Informe um novo preco");
     }
+
+    const produto = produtos.find(produto => produto.id === id);
+
+    if(!produto){
+        resp.status(404).send("Produto nao encontrado.");
+    }
+
+    produto.preco = novoPreco;
+    resp.status(200).send(produto);
+
+});
+
+//Adicionar a Categoria (PUT): Crie uma rota PUT /produtos/:id que receba um id e um objeto de produto
+//completo no corpo da requisição. O novo produto pode ter uma propriedade categoria. Substitua o 
+//produto antigo pelo novo. Se a propriedade categoria não existir, retorne um erro 400 (Bad Request).
+
+app.put("/produtos/:id", (req, resp) =>{
+    const id = parseInt(req.params.id);
+
+    const produtoCorpo = req.body;
 
 });
