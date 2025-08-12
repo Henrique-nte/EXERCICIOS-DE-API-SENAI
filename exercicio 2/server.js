@@ -36,5 +36,41 @@ app.get("/produtos/em-estoque", (req, resp) => {
 
     resp.send(produtos_EmEstoque);
 
+    
+    
+    
 });
 
+//Pesquisar Produto por Nome (GET): Crie uma rota GET /produtos/pesquisar que receba um parâmetro de consulta (query parameter) chamado nome.
+//A rota deve retornar uma lista de produtos que contenham o texto da pesquisa no nome (a pesquisa deve ser case-insensitive).
+//Exemplo de requisição: GET /produtos/pesquisar?nome=mouse
+
+app.get("/produtos/pesquisar", (req, resp) =>{
+
+    const nome = req.query.nome;
+
+    const produtoComNome = produtos.filter(produto => produto.nome.toLocaleLowerCase() == nome.toLocaleLowerCase());
+
+    resp.send(produtoComNome);
+
+});
+
+
+//Atualizar Preço (PATCH): Crie uma rota PATCH /produtos/:id que receba um id e um novo preco no corpo da requisição.
+//Atualize apenas o preço do produto correspondente.
+//Dica: PATCH é usado para atualização parcial, enquanto PUT é para substituição completa.
+
+app.patch("/produtos/:id", (req, resp) =>{
+
+    const id = req.params.id;
+    let novoPreco = req.body;
+
+    for (let i = 0;i < produtos.length;i++){
+        if (produtos[i].id == id){
+            produtos[i].preco = novoPreco;
+            resp.send("Preço atualizado com sucesso" );
+            break;
+        }
+    }
+
+});
