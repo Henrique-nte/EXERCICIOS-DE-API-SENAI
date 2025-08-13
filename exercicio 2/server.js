@@ -86,7 +86,35 @@ app.patch("/produtos/:id", (req, resp) =>{
 
 app.put("/produtos/:id", (req, resp) =>{
     const id = parseInt(req.params.id);
-
     const produtoCorpo = req.body;
+
+    const categoriasPermitidas = ["Perifericos", "Monitores", "Componentes"];
+    //
+    for(let i = 0;i < categoriasPermitidas.length;i++){
+        if(produtoCorpo.categoria != categoriasPermitidas[i]){
+            resp.status(400).send("Categoria invalida!");
+            break;
+        }
+    }
+    
+
+    if(!produtoCorpo){
+        resp.status(400).send("Informe um produto!");
+    }
+
+    const produto = produtos.find(produto => produto.id == id);
+
+    if(!produto){
+        resp.status(400).send("Informe um produto");
+    }
+
+    produto.nome = produtoCorpo.nome; 
+    produto.preco = produtoCorpo.preco; 
+    produto.emEstoque = produtoCorpo.emEstoque; 
+
+    //Adicionar categoria
+    produto.categoria = produtoCorpo.categoria;
+
+    resp.status(200).send(produto);
 
 });
