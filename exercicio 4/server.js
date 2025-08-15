@@ -39,7 +39,7 @@ app.get("/posts/:id/comentarios", (req, resp) =>{
 
     const comentariosPost = comentarios.filter(comentario => comentario.post_id == id);
 
-    console.log(comentariosPost);
+    
 
     if(comentariosPost != ""){
         resp.status(200).send(comentariosPost);
