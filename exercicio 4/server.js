@@ -79,15 +79,17 @@ app.post("/posts/:id/comentarios", (req, resp) =>{
 // Diferente das outras, esta rota não precisa do id do post.
 
 app.delete("/comentarios/:id", (req, resp) =>{
+
     const id = parseInt(req.params.id);
 
     const index = comentarios.findIndex(comentario => comentario.id == id);
 
-    if (!index){
+    if (index >= 0) {
         comentarios.splice(index, 1);
-        resp.status(204).send(`Comentario com id: ${id} removido com sucesso!`);
-    }else{
-        resp.status(404).send("Usuario nao encontrado.");
+        resp.status(200).send(`Comentario com id: ${id} removido com sucesso!`);
+    } else {
+        resp.status(404).send("Comentario nao encontrado.");
     }
+    
 
 }); 
