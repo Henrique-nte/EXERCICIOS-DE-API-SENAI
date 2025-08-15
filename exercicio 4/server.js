@@ -90,6 +90,5 @@ app.delete("/comentarios/:id", (req, resp) =>{
     } else {
         resp.status(404).send("Comentario nao encontrado.");
     }
-    
 
 }); 
