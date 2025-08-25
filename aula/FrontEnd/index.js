@@ -1,4 +1,4 @@
-fetch("http://localhost:3000/usuarios").then(async res => { //async espera a informacao
+fetch("http://localhost:3000/usuarios").then(res => { //async espera a informacao
     if (!res.ok) {
         throw new Error("Erro na requisição");
     }
@@ -9,7 +9,9 @@ fetch("http://localhost:3000/usuarios").then(async res => { //async espera a inf
 
     const listaUsuarios = document.getElementById("lista-usuarios");
     usuarios.forEach(usuario => {
-        console.log(usuario);
+
+        listaUsuarios.innerHTML += `<li class="list-group-item">${usuario.nome}</li>`;
+
     });
 
 }).catch(err => {
