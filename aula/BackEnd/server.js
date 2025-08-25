@@ -1,4 +1,5 @@
 const express = require("express"); //Importa o express
+const cors = require("cors");
 
 const app = express(); //Cria o servidor
 
@@ -6,12 +7,13 @@ const port = 3000;
 
 //Para permitir receber json nas requisições
 app.use(express.json());
+app.use(cors());
 
 //Array de usuários
 const usuarios = [
     { "id": 1, "nome": "Otavio", "idade": 20, "senha": "123" },
     { "id": 2, "nome": "Admin", "idade": 20, "senha": "1234" }
-]
+];
 
 //Request = Requisição
 app.get("/", (request, response) => {
