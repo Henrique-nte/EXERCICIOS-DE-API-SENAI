@@ -21,11 +21,11 @@ function cadastroUsuario(event) {
             "senha": senha
         })
 
-    })
+    }) //Envia os dados
 
-        .then(response => response.json())
+        .then(response => response.json()) //Espera a promessa
 
-        .then(data => console.log(data))
+        .then(data => console.log(data)) //Lida com os dados enviados
 
         .catch(error => console.log(error));
 
