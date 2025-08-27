@@ -11,10 +11,10 @@ app.use(cors());
 
 //Array de usuários
 const usuarios = [
-    { "id": 1, "nome": "nome 1", "idade": 20, "senha": "123" },
-    { "id": 2, "nome": "nome 2", "idade": 20, "senha": "1234" },
-    { "id": 2, "nome": "nome 3", "idade": 20, "senha": "1234" },
-    { "id": 2, "nome": "nome 4", "idade": 20, "senha": "1234" },
+    { "id": 1, "nome": "Machado de Assis", "idade": 20, "senha": "123" },
+    { "id": 2, "nome": "Carlos Drummond ", "idade": 20, "senha": "1234" },
+    { "id": 2, "nome": "Clarice Lispector", "idade": 20, "senha": "1234" },
+    { "id": 2, "nome": "Fernado Pessoa", "idade": 20, "senha": "1234" },
 ];
 
 //Request = Requisição
