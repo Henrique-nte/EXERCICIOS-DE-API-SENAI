@@ -48,7 +48,7 @@ function atualizarUsuario(event) { // Função para atualizar o usuário
         .then(response => response.json())
 
         .then(data => {
-            console.log(data);
+            console.log(data)
             alert(`Usuário ${usuarioId} foi atualizado com sucesso!`);
             window.location.href = `../index.html`;
         })

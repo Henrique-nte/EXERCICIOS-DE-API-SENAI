@@ -12,12 +12,11 @@ app.use(cors());
 //Array de usuários
 const usuarios = [
     { "id": 1, "nome": "Machado de Assis", "idade": 20, "senha": "123" },
-    { "id": 2, "nome": "Carlos Drummond ", "idade": 20, "senha": "1234" },
-    { "id": 3, "nome": "Clarice Lispector", "idade": 20, "senha": "1234" },
-    { "id": 4, "nome": "Fernado Pessoa", "idade": 20, "senha": "1234" },
+    { "id": 2, "nome": "Carlos Drummond ", "idade": 30, "senha": "321" },
+
 ];
 
-let nextId = 5;
+let nextId = 3;
 //Request = Requisição
 app.get("/", (request, response) => {
     response.send("Primeiro servidor DESI - Malwee")
