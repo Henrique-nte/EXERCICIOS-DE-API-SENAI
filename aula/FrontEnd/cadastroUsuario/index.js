@@ -25,7 +25,12 @@ function cadastroUsuario(event) {
 
         .then(response => response.json()) //Espera a promessa
 
-        .then(data => console.log(data)) //Lida com os dados enviados
+        .then(data => {
+            console.log(data);
+            alert("Usuário cadastrado com sucesso!");
+            window.location.href = "../index.html";
+
+        }) //Lida com os dados enviados
 
         .catch(error => console.log(error));
 

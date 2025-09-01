@@ -10,7 +10,16 @@ fetch("http://localhost:3000/usuarios").then(res => { //async espera a informaca
     const listaUsuarios = document.getElementById("lista-usuarios");
     usuarios.forEach(usuario => {
 
-        listaUsuarios.innerHTML += `<li class="list-group-item">${usuario.nome}</li>`;
+        listaUsuarios.innerHTML +=
+
+            `<li class="list-group-item">
+            <div class="d-flex justify-content-between">
+                <h5>Nome: ${usuario.nome} - Idade: ${usuario.idade}</h5>
+                <a href = "editarUsuario/index.html?id=${usuario.id}" type="button" class="btn btn-primary">Atualizar</a>
+
+            </div>
+            </li>
+            `;
 
     });
 

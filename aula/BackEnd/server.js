@@ -13,10 +13,11 @@ app.use(cors());
 const usuarios = [
     { "id": 1, "nome": "Machado de Assis", "idade": 20, "senha": "123" },
     { "id": 2, "nome": "Carlos Drummond ", "idade": 20, "senha": "1234" },
-    { "id": 2, "nome": "Clarice Lispector", "idade": 20, "senha": "1234" },
-    { "id": 2, "nome": "Fernado Pessoa", "idade": 20, "senha": "1234" },
+    { "id": 3, "nome": "Clarice Lispector", "idade": 20, "senha": "1234" },
+    { "id": 4, "nome": "Fernado Pessoa", "idade": 20, "senha": "1234" },
 ];
 
+let nextId = 5;
 //Request = Requisição
 app.get("/", (request, response) => {
     response.send("Primeiro servidor DESI - Malwee")
@@ -43,15 +44,16 @@ app.get("/usuarios/:id", (req, res) => {
 
 });
 
+
 //Criar um usuário
 app.post("/usuarios", (req, res) => {
     //body - corpo da requisição
     const novoUsuario = req.body
-    novoUsuario.id = usuarios.length + 1
+    novoUsuario.id = nextId++;
 
     usuarios.push(novoUsuario)
 
-    res.send(novoUsuario)
+    res.status(201).send(novoUsuario)
 });
 
 
@@ -65,7 +67,7 @@ app.put("/usuarios", (req, res) => {
 
     if (index != null) {
         usuarios[index] = novoUsuario;
-        res.status(204).send(novoUsuario)
+        res.status(200).send(novoUsuario)
     } else {
         res.status(404).send("Usuário não encontrado.")
     }
