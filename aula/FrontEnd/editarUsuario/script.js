@@ -6,8 +6,10 @@ let nome = document.getElementById("nome"); // Pega o elemento do input nome
 let idade = document.getElementById("idade"); // Pega o elemento do input idade
 let senha = document.getElementById("senha"); // Pega o elemento do input senha
 
+
 document.addEventListener("DOMContentLoaded", () => { // Executa quando o DOM estiver carregado
-    !fetch(`http://localhost:3000/usuarios/${usuarioId}`) // Faz a requisição para o backend
+
+    fetch(`http://localhost:3000/usuarios/${usuarioId}`) // Faz a requisição para o backend
 
 
         .then(response => response.json())
@@ -50,7 +52,7 @@ function atualizarUsuario(event) { // Função para atualizar o usuário
         .then(data => {
             console.log(data)
             alert(`Usuário ${usuarioId} foi atualizado com sucesso!`);
-            window.location.href = `../index.html`;
+            window.location.href = "../index.html";
         })
 
         .catch(error => console.log(error));

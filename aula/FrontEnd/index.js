@@ -15,7 +15,12 @@ fetch("http://localhost:3000/usuarios").then(res => { //async espera a informaca
             `<li class="list-group-item">
             <div class="d-flex justify-content-between">
                 <h5>Nome: ${usuario.nome} - Idade: ${usuario.idade}</h5>
+
+                <div>
                 <a href = "editarUsuario/index.html?id=${usuario.id}" type="button" class="btn btn-primary">Atualizar</a>
+                <button type="button" class="btn btn-danger" onclick = "deletarUsuario(${usuario.id})">Deletar</button>
+                </div>
+
 
             </div>
             </li>
@@ -26,3 +31,7 @@ fetch("http://localhost:3000/usuarios").then(res => { //async espera a informaca
 }).catch(err => {
     console.error(err);
 });
+
+function deletarUsuario(userId) {
+    console.log(userId);
+}

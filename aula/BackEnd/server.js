@@ -12,7 +12,7 @@ app.use(cors());
 //Array de usuários
 const usuarios = [
     { "id": 1, "nome": "Machado de Assis", "idade": 20, "senha": "123" },
-    { "id": 2, "nome": "Carlos Drummond ", "idade": 30, "senha": "321" },
+    { "id": 2, "nome": "Carlos Drummond ", "idade": 30, "senha": "321" }
 
 ];
 
@@ -36,7 +36,7 @@ app.get("/usuarios/:id", (req, res) => {
     const users = usuarios.find(usuario => usuario.id == id);
 
     if (users != null) {
-        res.send(usuarios)
+        res.status(200).send(users)
     } else {
         res.status(404).send("Usuario não encontrado.")
     }
@@ -66,9 +66,9 @@ app.put("/usuarios", (req, res) => {
 
     if (index != null) {
         usuarios[index] = novoUsuario;
-        res.status(200).send(novoUsuario)
+        res.status(200).json(novoUsuario)
     } else {
-        res.status(404).send("Usuário não encontrado.")
+        res.status(404).json("Usuário não encontrado.")
     }
 
 });
