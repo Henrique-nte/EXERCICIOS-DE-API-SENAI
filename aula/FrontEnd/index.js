@@ -17,8 +17,8 @@ fetch("http://localhost:3000/usuarios").then(res => { //async espera a informaca
                 <h5>Nome: ${usuario.nome} - Idade: ${usuario.idade}</h5>
 
                 <div>
-                <a href = "editarUsuario/index.html?id=${usuario.id}" type="button" class="btn btn-primary">Atualizar</a>
-                <button type="button" class="btn btn-danger" onclick = "deletarUsuario(${usuario.id})">Deletar</button>
+                <a href = "editarUsuario/index.html?id=${usuario.id}" class="btn btn-primary">Atualizar</a>
+                <button type="button" class="btn btn-danger" onclick="deletarUsuario(${usuario.id})">Deletar</button>
                 </div>
 
 
@@ -32,6 +32,32 @@ fetch("http://localhost:3000/usuarios").then(res => { //async espera a informaca
     console.error(err);
 });
 
+
+
+//Função para deletar usuário
 function deletarUsuario(userId) {
-    console.log(userId);
+    let confirmar = confirm("Você realmente deseja excluir o usuário " + userId + "?");
+
+
+    if (confirmar) {
+        fetch(`http://localhost:3000/usuarios/${userId}`, {
+
+            method: 'DELETE',
+
+        })
+
+            .then(response => {
+                if (response.ok) {
+                    alert("Usuário " + userId + "excluido com sucesso!");
+                    window.location.reload();
+                    return;
+                }
+
+                alert("Algo deu errado!");
+            })
+
+            .catch(error => console.log(error));
+
+    }
+
 }

@@ -57,15 +57,16 @@ app.post("/usuarios", (req, res) => {
 
 
 //Atualizar usuário
-app.put("/usuarios", (req, res) => {
+app.put("/usuarios/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const novoUsuario = req.body;
     novoUsuario.id = id;
     const index = usuarios.findIndex(usuario => usuario.id == id);
 
 
-    if (index != null) {
+    if (index !== -1) {
         usuarios[index] = novoUsuario;
+
         res.status(200).json(novoUsuario)
     } else {
         res.status(404).json("Usuário não encontrado.")
@@ -78,11 +79,11 @@ app.delete("/usuarios/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const index = usuarios.findIndex(usuario => usuario.id == id);
 
-    if (index != null) {
+    if (index !== -1) {
         usuarios.splice(index, 1);
-        res.status(204).send("Usuario com id:", + id + "removido com sucesso.")
+        res.status(204).json("Usuario com id:", + id + "removido com sucesso.")
     } else {
-        res.status(404).send("Usuário não encontrado.")
+        res.status(404).json("Usuário não encontrado.")
     }
 });
 
